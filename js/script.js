@@ -177,6 +177,28 @@ if (orgCarousel && orgPrev && orgNext) {
   renderOrgCarousel();
 }
 
+// Documentation photo accordion (expand on click, with prev/next nav)
+const dGallery = document.getElementById('dGallery');
+const galPrev = document.getElementById('galPrev');
+const galNext = document.getElementById('galNext');
+if (dGallery) {
+  const gallerySlots = Array.from(dGallery.querySelectorAll('.photo-slot'));
+  let galleryActive = gallerySlots.findIndex(s => s.classList.contains('active'));
+  if (galleryActive === -1) galleryActive = 0;
+
+  function setGalleryActive(i) {
+    galleryActive = (i + gallerySlots.length) % gallerySlots.length;
+    gallerySlots.forEach((s, idx) => s.classList.toggle('active', idx === galleryActive));
+  }
+  setGalleryActive(galleryActive);
+
+  gallerySlots.forEach((slot, idx) => {
+    slot.addEventListener('click', () => setGalleryActive(idx));
+  });
+  if (galPrev) galPrev.addEventListener('click', () => setGalleryActive(galleryActive - 1));
+  if (galNext) galNext.addEventListener('click', () => setGalleryActive(galleryActive + 1));
+}
+
 // Navbar shrink shadow on scroll (subtle)
 const navbar = document.getElementById('navbar');
 if (navbar) {
