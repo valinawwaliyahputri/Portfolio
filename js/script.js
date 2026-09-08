@@ -2,30 +2,34 @@
 const burger = document.getElementById('burger');
 const navLinks = document.getElementById('navLinks');
 
-burger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-});
+if (burger && navLinks) {
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
 
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => navLinks.classList.remove('open'));
-});
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+}
 
 // Active link highlight on scroll
 const sections = document.querySelectorAll('section[id]');
 const navAnchors = document.querySelectorAll('.nav-links a');
 
-function setActiveLink() {
-  let current = '';
-  sections.forEach(sec => {
-    const top = sec.offsetTop - 140;
-    if (window.scrollY >= top) current = sec.getAttribute('id');
-  });
-  navAnchors.forEach(a => {
-    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
-  });
+if (navAnchors.length) {
+  function setActiveLink() {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.offsetTop - 140;
+      if (window.scrollY >= top) current = sec.getAttribute('id');
+    });
+    navAnchors.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', setActiveLink);
+  setActiveLink();
 }
-window.addEventListener('scroll', setActiveLink);
-setActiveLink();
 
 // Reveal on scroll
 const revealEls = document.querySelectorAll('.reveal');
@@ -52,10 +56,12 @@ if (expScroll && expPrev && expNext) {
 
 // Navbar shrink shadow on scroll (subtle)
 const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 30) {
-    navbar.style.boxShadow = '0 20px 45px -18px rgba(0,0,0,.55)';
-  } else {
-    navbar.style.boxShadow = '0 15px 35px -18px rgba(0,0,0,.4)';
-  }
-});
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) {
+      navbar.style.boxShadow = '0 20px 45px -18px rgba(0,0,0,.55)';
+    } else {
+      navbar.style.boxShadow = '0 15px 35px -18px rgba(0,0,0,.4)';
+    }
+  });
+}
