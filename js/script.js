@@ -54,6 +54,66 @@ if (expScroll && expPrev && expNext) {
   expNext.addEventListener('click', () => expScroll.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
 }
 
+// Projects: draggable arch-card carousel with dark intro panel
+const projScroll = document.getElementById('projScroll');
+const projPrev = document.getElementById('projPrev');
+const projNext = document.getElementById('projNext');
+const projPagerWrap = document.getElementById('projPager');
+
+if (projScroll && projPrev && projNext) {
+  const projCards = Array.from(projScroll.querySelectorAll('.proj-card'));
+  const projStep = () => projCards[0].offsetWidth + 24;
+  const cardsPerPage = 3;
+  const pageCount = Math.ceil(projCards.length / cardsPerPage);
+
+  let projDots = [];
+  if (projPagerWrap) {
+    for (let i = 0; i < pageCount; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = String(i + 1).padStart(2, '0');
+      btn.addEventListener('click', () => {
+        projScroll.scrollTo({ left: i * cardsPerPage * projStep(), behavior: 'smooth' });
+      });
+      projPagerWrap.appendChild(btn);
+    }
+    projDots = Array.from(projPagerWrap.children);
+  }
+
+  function updateProjPager() {
+    if (!projDots.length) return;
+    const page = Math.round(projScroll.scrollLeft / (cardsPerPage * projStep()));
+    projDots.forEach((dot, i) => dot.classList.toggle('active', i === Math.min(page, pageCount - 1)));
+  }
+
+  projPrev.addEventListener('click', () => projScroll.scrollBy({ left: -projStep(), behavior: 'smooth' }));
+  projNext.addEventListener('click', () => projScroll.scrollBy({ left: projStep(), behavior: 'smooth' }));
+  projScroll.addEventListener('scroll', updateProjPager);
+  window.addEventListener('resize', updateProjPager);
+  updateProjPager();
+
+  // Mouse drag-to-scroll
+  let isDragging = false, dragStartX = 0, scrollStart = 0, dragMoved = false;
+  projScroll.addEventListener('mousedown', (e) => {
+    isDragging = true; dragMoved = false;
+    dragStartX = e.pageX;
+    scrollStart = projScroll.scrollLeft;
+    projScroll.classList.add('dragging');
+  });
+  window.addEventListener('mousemove', (e) => {
+    if (!isDragging) return;
+    const delta = e.pageX - dragStartX;
+    if (Math.abs(delta) > 4) dragMoved = true;
+    projScroll.scrollLeft = scrollStart - delta;
+  });
+  window.addEventListener('mouseup', () => {
+    isDragging = false;
+    projScroll.classList.remove('dragging');
+  });
+  projScroll.addEventListener('click', (e) => {
+    if (dragMoved) { e.preventDefault(); e.stopPropagation(); }
+  }, true);
+}
+
 // Organization & Committee coverflow carousel
 const orgCarousel = document.getElementById('orgCarousel');
 const orgPrev = document.getElementById('orgPrev');

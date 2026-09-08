@@ -48,7 +48,7 @@
     <div class="hero-visual reveal">
       <div class="blob"></div>
       <div class="photo-frame">
-        <div class="avatar-circle">VA</div>
+        <img src="Assets/Heroes/Valina Awwaliyah Putri.png" alt="Valina Awwaliyah Putri" class="hero-photo">
       </div>
       <div class="badge badge-spin">
         <svg viewBox="0 0 120 120" class="spin-text">
@@ -118,7 +118,7 @@
   <div class="container about-grid">
     <div class="about-photo reveal">
       <div class="about-photo-circle">
-        <div class="avatar-circle avatar-circle-lg">VA</div>
+        <img src="Assets/Heroes/Valina Awwaliyah Putri.png" alt="Valina Awwaliyah Putri" class="about-photo-img">
       </div>
       <div class="floatchip fc1">UX Data Storytelling</div>
       <div class="floatchip fc2">Digital Business</div>
@@ -343,95 +343,118 @@
 <!-- ===== PROJECTS ===== -->
 <section class="section projects" id="projects">
   <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">— Portfolio</span>
-        <h2><em>Selected</em> Projects</h2>
+    <div class="proj-layout">
+
+      <div class="proj-intro reveal">
+        <div class="proj-pager" id="projPager"></div>
+        <span class="eyebrow eyebrow-light">— Portfolio</span>
+        <h2 class="proj-intro-title">Selected<br>Projects</h2>
+        <p class="proj-intro-text">Sekilas proyek data science, digital business, dan visualisasi
+          yang pernah saya kerjakan — dari machine learning &amp; forecasting hingga infografis
+          kompetisi nasional.</p>
+        <span class="proj-rating">★★★★★ <strong>10+</strong> Projects</span>
+        <div class="proj-panel-actions">
+          <button class="scroll-btn proj-mini-btn" id="projPrev" aria-label="Sebelumnya">←</button>
+          <button class="btn btn-pill btn-yellow" id="projNext">Next <span class="arrow-r">→</span></button>
+        </div>
       </div>
-    </div>
 
-    <div class="project-grid">
+      <div class="proj-scroll-wrap">
+        <div class="proj-scroll" id="projScroll">
 
-      <div class="project-card featured reveal">
-        <span class="proj-tag">Featured</span>
+      <div class="proj-card reveal">
+        <span class="proj-badge">Featured</span>
+        <div class="proj-icon-circle">🌄</div>
         <h4>Website Wonderful Argosari</h4>
-        <p class="muted">KKN PPM UGM Periode 2 2025 · Tim Swadarma Senduro</p>
-        <p>Created a promotional website for Argosari Village tourism packages, complemented with a
+        <p class="proj-meta">KKN PPM UGM 2025 · Tim Swadarma Senduro</p>
+        <p class="proj-desc">Promotional website for Argosari Village tourism packages plus a
           population statistics dashboard.</p>
         <div class="tool-tags"><span>WordPress</span><span>Figma</span><span>Python</span></div>
-        <a href="https://wonderfulargosari.web.id/wp/" target="_blank" class="learn-more">Visit site →</a>
+        <a href="https://wonderfulargosari.web.id/wp/" target="_blank" class="proj-link" aria-label="Visit site">→</a>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">📺</div>
         <h4>Analisis Optimasi Konten Berdasarkan TV Shows Database</h4>
-        <p class="muted">SSF UNS 2024</p>
-        <p>Exploratory analysis and content performance modeling using a TV shows database to derive
-          patterns for content recommendation and strategy optimization.</p>
+        <p class="proj-meta">SSF UNS 2024</p>
+        <p class="proj-desc">Exploratory analysis and content performance modeling to derive patterns
+          for content recommendation and strategy optimization.</p>
         <div class="tool-tags"><span>Power BI</span><span>Python</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">♻️</div>
         <h4>Ecosmart Filter: Solusi Cerdas Penangkal Mikroplastik</h4>
-        <p class="muted">NCC UNY #2 2025</p>
-        <p>Infographic highlighting the dangers of microplastic waste while presenting Ecosmart Filter
-          as an innovative solution.</p>
+        <p class="proj-meta">NCC UNY #2 2025</p>
+        <p class="proj-desc">Infographic highlighting the dangers of microplastic waste while
+          presenting Ecosmart Filter as an innovative solution.</p>
         <div class="tool-tags"><span>Canva</span><span>Figma</span><span>Python</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">🎓</div>
         <h4>EdTech: Jembatan Digital Menuju Pendidikan Merata di Indonesia</h4>
-        <p class="muted">NIC Nacoesta UMY 2025</p>
-        <p>Infographic presenting evidence of Indonesia's lag in education quality relative to ASEAN
-          peers, promoting EdTech as a scalable, inclusive solution.</p>
+        <p class="proj-meta">NIC Nacoesta UMY 2025</p>
+        <p class="proj-desc">Infographic on Indonesia's education gap versus ASEAN peers, promoting
+          EdTech as a scalable, inclusive solution.</p>
         <div class="tool-tags"><span>Canva</span><span>Figma</span><span>Python</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">❤️</div>
         <h4>ML-Based Classification of Heart Disease Risk for Insurance DSS</h4>
-        <p class="muted">Final Project · Statistical Machine Learning · Apr 2025</p>
-        <p>End-to-end ML pipeline (preprocessing → modeling → evaluation → dashboard deployment) to
-          classify heart disease risk and estimate insurance premiums.</p>
+        <p class="proj-meta">Statistical Machine Learning · Apr 2025</p>
+        <p class="proj-desc">End-to-end ML pipeline (preprocessing → modeling → evaluation →
+          dashboard) to classify heart disease risk and estimate premiums.</p>
         <div class="tool-tags"><span>Python</span><span>Streamlit</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">📈</div>
         <h4>Deteksi Outlier pada Return Saham IDX30 Menggunakan EVT</h4>
-        <p class="muted">Intern Project · Otoritas Jasa Keuangan · Jan 2025</p>
-        <p>Applied Extreme Value Theory (EVT) and multivariate control charts to detect anomalies in
-          stock return portfolios.</p>
+        <p class="proj-meta">Intern Project · OJK · Jan 2025</p>
+        <p class="proj-desc">Applied Extreme Value Theory and multivariate control charts to detect
+          anomalies in stock return portfolios.</p>
         <div class="tool-tags"><span>Python</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">🧠</div>
         <h4>Klasifikasi Penyakit Tumor Otak Berbasis Transfer Learning CNN</h4>
-        <p class="muted">Final Project · Introduction to Data Science · Jun 2024</p>
-        <p>Brain tumor classification model using transfer learning with Convolutional Neural Networks
-          to support medical image analysis.</p>
+        <p class="proj-meta">Introduction to Data Science · Jun 2024</p>
+        <p class="proj-desc">Brain tumor classification model using transfer learning with CNNs to
+          support medical image analysis.</p>
         <div class="tool-tags"><span>Python</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">📋</div>
         <h4>Klasifikasi Klaim Besar &amp; Normal Berdasarkan Diagnosis Kanker (BPJS)</h4>
-        <p class="muted">Final Project · General Linear Model · Oct 2024</p>
-        <p>Binary logistic regression to classify high-cost and normal insurance claims based on cancer
-          diagnoses and patient data from BPJS FKRTL samples (2019–2020).</p>
+        <p class="proj-meta">General Linear Model · Oct 2024</p>
+        <p class="proj-desc">Binary logistic regression to classify high-cost and normal insurance
+          claims from BPJS FKRTL samples (2019–2020).</p>
         <div class="tool-tags"><span>R</span><span>Python</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">🔗</div>
         <h4>Multigroup SEM: Pendidikan, Ekonomi, Kesehatan terhadap IPM</h4>
-        <p class="muted">Final Project · Structural Equation Model · Jun 2025</p>
-        <p>Multigroup SEM examining the effects of education, economy, and health on the Human
-          Development Index through the mediating role of poverty.</p>
+        <p class="proj-meta">Structural Equation Model · Jun 2025</p>
+        <p class="proj-desc">Multigroup SEM examining education, economy, and health effects on the
+          Human Development Index via the mediating role of poverty.</p>
         <div class="tool-tags"><span>SmartPLS</span><span>Excel</span></div>
       </div>
 
-      <div class="project-card reveal">
+      <div class="proj-card reveal">
+        <div class="proj-icon-circle">🍬</div>
         <h4>Analisis Supply &amp; Demand Gula di Amerika Serikat (SARIMA)</h4>
-        <p class="muted">Final Project · Forecasting Method · Jul 2024</p>
-        <p>SARIMA time series modeling to forecast sugar supply and demand trends for market and
-          policy insights.</p>
+        <p class="proj-meta">Forecasting Method · Jul 2024</p>
+        <p class="proj-desc">SARIMA time series modeling to forecast sugar supply and demand trends
+          for market and policy insights.</p>
         <div class="tool-tags"><span>R</span><span>Python</span></div>
+      </div>
+
+        </div>
       </div>
 
     </div>
