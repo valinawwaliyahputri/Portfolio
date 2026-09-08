@@ -262,6 +262,10 @@ em{font-style:italic; color:var(--gold); font-family:'Poppins',serif;}
   font-size:.8rem; font-weight:800; padding:.45rem 1rem; border-radius:var(--radius-pill);
 }
 .exp-icon{font-size:3.2rem; filter:drop-shadow(0 8px 14px rgba(0,0,0,.35));}
+.exp-card-top.has-cover{
+  background:linear-gradient(180deg, rgba(23,56,36,.1) 0%, rgba(23,56,36,.6) 100%),
+    url('../Assets/Internship/Sampul MRT.webp') center/cover no-repeat;
+}
 .exp-card-body{padding:1.6rem 1.7rem 2rem;}
 .exp-card-body h4{font-size:1.2rem; line-height:1.35; margin-bottom:.6rem; min-height:2.7em;}
 .exp-card-body p{font-size:.92rem;}
