@@ -111,6 +111,27 @@
 .pd-process-step h4{font-size:1rem; margin-bottom:.5rem; font-family:'Poppins',sans-serif; font-weight:700;}
 .pd-process-step p{font-size:.85rem; color:#6b5f4f; line-height:1.55;}
 
+/* Work Result (downloadable files) */
+.pd-files-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem;}
+.pd-file-card{
+  background:var(--pd-card); border:1px solid var(--pd-line); border-radius:20px;
+  padding:1.6rem 1.5rem; display:flex; flex-direction:column; gap:.9rem;
+  transition:transform .25s ease, box-shadow .25s ease;
+}
+.pd-file-card:hover{transform:translateY(-6px); box-shadow:0 22px 40px -20px rgba(42,29,19,.35);}
+.pd-file-icon{
+  width:52px; height:52px; border-radius:14px; background:var(--pd-teal); color:#fff;
+  display:flex; align-items:center; justify-content:center; font-size:1.5rem;
+}
+.pd-file-name{font-weight:700; font-size:.94rem; color:var(--pd-ink); line-height:1.35;}
+.pd-file-type{font-size:.76rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; color:var(--pd-terracotta);}
+.pd-file-download{
+  display:inline-flex; align-items:center; gap:.5rem; margin-top:auto; align-self:flex-start;
+  font-size:.85rem; font-weight:700; color:var(--pd-ink); border-bottom:2px solid var(--pd-terracotta);
+  padding-bottom:2px; transition:.2s ease;
+}
+.pd-file-download:hover{color:var(--pd-terracotta); gap:.7rem;}
+
 /* Gallery */
 .pd-gallery{display:grid; grid-template-columns:repeat(4,1fr); gap:1.1rem;}
 .pd-photo-slot{
@@ -168,11 +189,13 @@
   .pd-icon-disc{width:160px; height:160px; font-size:3.6rem;}
   .pd-process-grid{grid-template-columns:1fr 1fr;}
   .pd-gallery{grid-template-columns:1fr 1fr;}
+  .pd-files-grid{grid-template-columns:1fr 1fr;}
   .pd-footer{grid-template-columns:1fr;}
   .pd-thanks-card{position:static; margin-top:1rem; transform:none;}
 }
 @media (max-width:560px){
   .pd-process-grid{grid-template-columns:1fr;}
   .pd-gallery{grid-template-columns:1fr;}
+  .pd-files-grid{grid-template-columns:1fr;}
   .pd-hero-actions{flex-direction:column; align-items:flex-start;}
 }
