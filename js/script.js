@@ -54,6 +54,66 @@ if (expScroll && expPrev && expNext) {
   expNext.addEventListener('click', () => expScroll.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
 }
 
+// Horizontal scroll controls (Certificate & Awards cards)
+const certScroll = document.getElementById('certScroll');
+const certPrev = document.getElementById('certPrev');
+const certNext = document.getElementById('certNext');
+if (certScroll && certPrev && certNext) {
+  const certScrollAmount = () => certScroll.querySelector('.cert-card').offsetWidth + 22;
+  certPrev.addEventListener('click', () => certScroll.scrollBy({ left: -certScrollAmount(), behavior: 'smooth' }));
+  certNext.addEventListener('click', () => certScroll.scrollBy({ left: certScrollAmount(), behavior: 'smooth' }));
+}
+
+// Certificate viewer modal + auto-download on click
+const certModal = document.getElementById('certModal');
+const certModalImg = document.getElementById('certModalImg');
+const certModalTitle = document.getElementById('certModalTitle');
+const certModalDownload = document.getElementById('certModalDownload');
+const certModalClose = document.getElementById('certModalClose');
+const certModalBackdrop = document.getElementById('certModalBackdrop');
+
+if (certScroll && certModal) {
+  const certCards = Array.from(certScroll.querySelectorAll('.cert-card'));
+
+  function openCertModal(card) {
+    const img = card.querySelector('img');
+    const title = card.dataset.title || card.querySelector('.cert-title')?.textContent || '';
+    const downloadUrl = card.dataset.download || img.src;
+    const fileName = downloadUrl.split('/').pop();
+
+    certModalImg.src = img.src;
+    certModalImg.alt = img.alt;
+    certModalTitle.textContent = title;
+    certModalDownload.href = downloadUrl;
+    certModalDownload.setAttribute('download', fileName);
+
+    certModal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
+    const tempLink = document.createElement('a');
+    tempLink.href = downloadUrl;
+    tempLink.setAttribute('download', fileName);
+    document.body.appendChild(tempLink);
+    tempLink.click();
+    tempLink.remove();
+  }
+
+  function closeCertModal() {
+    certModal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  certCards.forEach(card => {
+    card.addEventListener('click', () => openCertModal(card));
+  });
+
+  if (certModalClose) certModalClose.addEventListener('click', closeCertModal);
+  if (certModalBackdrop) certModalBackdrop.addEventListener('click', closeCertModal);
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeCertModal();
+  });
+}
+
 // Projects: draggable arch-card carousel with dark intro panel
 const projScroll = document.getElementById('projScroll');
 const projPrev = document.getElementById('projPrev');

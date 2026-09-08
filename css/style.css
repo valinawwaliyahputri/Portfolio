@@ -373,9 +373,9 @@ em{font-style:italic; color:var(--gold); font-family:'Poppins',serif;}
   max-width:var(--container); margin:3.5rem auto 0; padding:0 24px;
 }
 .org-nav{flex-shrink:0;}
-.org-carousel{position:relative; flex:1; max-width:900px; height:420px;}
+.org-carousel{position:relative; flex:1; max-width:900px; height:456px;}
 .org-card{
-  position:absolute; top:50%; left:50%; width:290px; height:390px;
+  position:absolute; top:50%; left:50%; width:290px; height:426px;
   transform:translate(-50%,-50%);
   background:var(--white); border:1px solid #eae7de; border-radius:26px; overflow:hidden;
   box-shadow:var(--shadow-soft); cursor:pointer;
@@ -400,6 +400,14 @@ em{font-style:italic; color:var(--gold); font-family:'Poppins',serif;}
   font-size:.85rem; color:var(--muted); line-height:1.55;
   display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden;
 }
+.org-view-btn{
+  display:inline-flex; align-items:center; gap:.4rem; margin-top:.9rem;
+  font-size:.8rem; font-weight:700; color:var(--green-dark);
+  padding:.5rem 1rem; border:1.5px solid var(--green-dark); border-radius:var(--radius-pill);
+  transition:background .25s ease, color .25s ease;
+}
+.org-view-btn:hover{background:var(--green-dark); color:#fff;}
+.org-view-btn:hover .arrow-r{transform:translateX(3px);}
 
 .org-dots{display:flex; justify-content:center; gap:.5rem; margin-top:1.6rem;}
 .org-dot{
@@ -407,6 +415,72 @@ em{font-style:italic; color:var(--gold); font-family:'Poppins',serif;}
   transition:.25s ease;
 }
 .org-dot.active{background:var(--gold); width:22px; border-radius:5px;}
+
+/* ===== Certificate & Awards (swing-tag cards) ===== */
+.cert-scroll-wrap{max-width:var(--container); margin:0 auto; padding:0 24px; overflow:hidden;}
+
+.cert-card{
+  flex:0 0 260px; scroll-snap-align:start;
+  background:var(--white); border:1px solid #eae7de; border-radius:26px;
+  padding:14px 14px 20px; display:flex; flex-direction:column;
+  transition:transform .3s ease, box-shadow .3s ease;
+}
+.cert-card:hover{transform:translateY(-8px) rotate(-1deg); box-shadow:var(--shadow-soft);}
+
+.cert-photo{
+  position:relative; height:210px; border-radius:18px; overflow:hidden;
+  background:var(--green-dark); margin-bottom:1.1rem;
+}
+.cert-photo img{width:100%; height:100%; object-fit:cover; display:block;}
+.cert-photo.is-rotated img{transform:rotate(90deg) scale(1.6); object-fit:cover;}
+.cert-rivet{
+  position:absolute; top:14px; left:14px; width:13px; height:13px; border-radius:50%;
+  background:var(--gold); box-shadow:0 0 0 3px rgba(255,255,255,.55); z-index:2;
+}
+.cert-brand{
+  position:absolute; top:11px; left:34px; font-family:'Playfair Display SC',serif; font-style:italic;
+  color:#fff; font-size:.82rem; text-shadow:0 1px 3px rgba(0,0,0,.55); z-index:2;
+}
+
+.cert-title{
+  font-size:1rem; font-weight:800; line-height:1.28; text-transform:uppercase; margin-bottom:.9rem;
+  min-height:2.6em;
+}
+
+.cert-meta-list{border-top:1.5px dashed #d8d3c4; padding-top:.8rem; margin-bottom:1rem;}
+.cert-meta-row{display:flex; gap:.6rem; font-size:.76rem; margin-bottom:.4rem; color:var(--muted); align-items:baseline;}
+.cert-meta-row .cert-meta-key{font-weight:800; color:var(--green-dark); min-width:30px; flex-shrink:0;}
+
+.cert-card{cursor:pointer;}
+
+/* ===== Certificate viewer modal ===== */
+.cert-modal{position:fixed; inset:0; z-index:999; display:none; align-items:center; justify-content:center; padding:24px;}
+.cert-modal.open{display:flex;}
+.cert-modal-backdrop{position:absolute; inset:0; background:rgba(23,20,15,.75);}
+.cert-modal-box{
+  position:relative; z-index:1; background:#fff; border-radius:22px; padding:18px 18px 22px;
+  max-width:min(90vw,720px); max-height:90vh; display:flex; flex-direction:column; gap:14px;
+  box-shadow:0 40px 80px -20px rgba(0,0,0,.5);
+}
+.cert-modal-box img{max-width:100%; max-height:68vh; object-fit:contain; border-radius:12px; display:block; margin:0 auto;}
+.cert-modal-close{
+  position:absolute; top:-14px; right:-14px; width:36px; height:36px; border-radius:50%;
+  background:var(--green-dark); color:#fff; border:2px solid #fff; font-size:1rem; cursor:pointer;
+  display:flex; align-items:center; justify-content:center; box-shadow:0 8px 18px -6px rgba(0,0,0,.4);
+  transition:transform .2s ease;
+}
+.cert-modal-close:hover{transform:scale(1.08); background:var(--gold); color:var(--green-dark);}
+.cert-modal-footer{display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;}
+.cert-modal-footer span{font-weight:700; font-size:.92rem; color:var(--ink); max-width:60%;}
+
+.cert-barcode{
+  height:30px; margin-top:auto; opacity:.75; border-radius:2px;
+  background:repeating-linear-gradient(90deg,
+    var(--ink) 0px, var(--ink) 2px, transparent 2px, transparent 4px,
+    var(--ink) 4px, var(--ink) 5px, transparent 5px, transparent 9px,
+    var(--ink) 9px, var(--ink) 10px, transparent 10px, transparent 12px,
+    var(--ink) 12px, var(--ink) 14px, transparent 14px, transparent 16px);
+}
 
 /* ===== Contact / footer ===== */
 .contact-cta{background:var(--green-dark); border-radius:48px; margin:0 20px 40px; color:#fff; text-align:center;}
@@ -444,9 +518,9 @@ em{font-style:italic; color:var(--gold); font-family:'Poppins',serif;}
   .nav-links{display:none;}
   .burger{display:flex;}
   .about-dark, .contact-cta{border-radius:28px; margin:0 12px;}
-  .exp-card{flex-basis:calc((100% - 28px)/2);}
-  .org-carousel{height:400px;}
-  .org-card{width:250px; height:360px;}
+  .exp-card, .cert-card{flex-basis:calc((100% - 28px)/2);}
+  .org-carousel{height:436px;}
+  .org-card{width:250px; height:396px;}
   .proj-layout{flex-direction:column;}
   .proj-intro{flex-basis:auto;}
   .proj-scroll{mask-image:none; -webkit-mask-image:none;}
@@ -455,12 +529,12 @@ em{font-style:italic; color:var(--gold); font-family:'Poppins',serif;}
   .hero-text h1, .hero-text h2{font-size:1.9rem;}
   .section{padding:70px 0;}
   .stats-row{gap:1.5rem;}
-  .exp-card{flex-basis:82%;}
+  .exp-card, .cert-card{flex-basis:82%;}
   .exp-card-top{height:150px;}
   .org-carousel-wrap{gap:.7rem;}
   .org-nav{width:38px; height:38px; font-size:.9rem;}
-  .org-carousel{height:370px;}
-  .org-card{width:210px; height:340px;}
+  .org-carousel{height:406px;}
+  .org-card{width:210px; height:376px;}
   .org-card-top{height:100px;}
   .org-card-icon{font-size:2rem;}
   .proj-intro{padding:2rem 1.6rem;}
