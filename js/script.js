@@ -54,6 +54,69 @@ if (expScroll && expPrev && expNext) {
   expNext.addEventListener('click', () => expScroll.scrollBy({ left: scrollAmount(), behavior: 'smooth' }));
 }
 
+// Organization & Committee coverflow carousel
+const orgCarousel = document.getElementById('orgCarousel');
+const orgPrev = document.getElementById('orgPrev');
+const orgNext = document.getElementById('orgNext');
+const orgDotsWrap = document.getElementById('orgDots');
+
+if (orgCarousel && orgPrev && orgNext) {
+  const orgCards = Array.from(orgCarousel.querySelectorAll('.org-card'));
+  const orgTotal = orgCards.length;
+  let orgActive = 0;
+
+  if (orgDotsWrap) {
+    orgCards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'org-dot';
+      dot.setAttribute('aria-label', `Slide ${i + 1}`);
+      dot.addEventListener('click', () => { orgActive = i; renderOrgCarousel(); });
+      orgDotsWrap.appendChild(dot);
+    });
+  }
+  const orgDots = orgDotsWrap ? Array.from(orgDotsWrap.children) : [];
+
+  function orgShortestOffset(i) {
+    let diff = i - orgActive;
+    if (diff > orgTotal / 2) diff -= orgTotal;
+    if (diff < -orgTotal / 2) diff += orgTotal;
+    return diff;
+  }
+
+  function renderOrgCarousel() {
+    const cardWidth = orgCards[0].offsetWidth;
+    const step = cardWidth * 0.78;
+
+    orgCards.forEach((card, i) => {
+      const offset = orgShortestOffset(i);
+      const abs = Math.abs(offset);
+      let scale, opacity, z, translateX;
+
+      if (abs === 0) { scale = 1; opacity = 1; z = 5; translateX = 0; }
+      else if (abs === 1) { scale = .82; opacity = .55; z = 4; translateX = offset * step; }
+      else if (abs === 2) { scale = .68; opacity = .25; z = 3; translateX = offset * step * 1.85; }
+      else { scale = .6; opacity = 0; z = 1; translateX = offset * step * 2.4; }
+
+      card.style.transform = `translate(-50%,-50%) translateX(${translateX}px) scale(${scale})`;
+      card.style.opacity = opacity;
+      card.style.zIndex = z;
+      card.style.pointerEvents = abs > 2 ? 'none' : 'auto';
+    });
+
+    orgDots.forEach((dot, i) => dot.classList.toggle('active', i === orgActive));
+  }
+
+  orgCards.forEach((card, i) => {
+    card.addEventListener('click', () => { orgActive = i; renderOrgCarousel(); });
+  });
+
+  orgPrev.addEventListener('click', () => { orgActive = (orgActive - 1 + orgTotal) % orgTotal; renderOrgCarousel(); });
+  orgNext.addEventListener('click', () => { orgActive = (orgActive + 1) % orgTotal; renderOrgCarousel(); });
+
+  window.addEventListener('resize', renderOrgCarousel);
+  renderOrgCarousel();
+}
+
 // Navbar shrink shadow on scroll (subtle)
 const navbar = document.getElementById('navbar');
 if (navbar) {
