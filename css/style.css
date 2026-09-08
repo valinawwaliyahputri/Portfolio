@@ -320,6 +320,14 @@ em{font-style:italic; color:var(--gold); font-family:'Poppins',serif;}
 .proj-scroll.dragging{cursor:grabbing; scroll-snap-type:none;}
 .proj-link-wrap{display:contents;}
 .proj-link-wrap .proj-card{cursor:pointer;}
+.proj-view-btn{
+  display:inline-flex; align-items:center; gap:.4rem; margin-top:1rem;
+  font-size:.82rem; font-weight:700; color:var(--green-dark);
+  padding:.55rem 1.1rem; border:1.5px solid var(--green-dark); border-radius:var(--radius-pill);
+  transition:background .25s ease, color .25s ease;
+}
+.proj-card:hover .proj-view-btn{background:var(--green-dark); color:#fff;}
+.proj-card:hover .proj-view-btn .arrow-r{transform:translateX(3px);}
 
 .proj-card{
   flex:0 0 252px; scroll-snap-align:start;
